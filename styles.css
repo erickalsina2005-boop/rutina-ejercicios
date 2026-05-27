@@ -4,26 +4,28 @@
 
 /* ─── CSS Custom Properties ─────────────────────────────────── */
 :root {
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #12121a;
-  --bg-card: #16161f;
-  --bg-card-hover: #1c1c28;
-  --bg-glass: rgba(22, 22, 31, 0.7);
-  --bg-glass-strong: rgba(22, 22, 31, 0.9);
+  --bg-primary: #000000;
+  --bg-secondary: #0a0a0f;
+  --bg-card: #111118;
+  --bg-card-hover: #16161f;
+  --bg-glass: rgba(10, 10, 15, 0.7);
+  --bg-glass-strong: rgba(0, 0, 0, 0.92);
 
-  --text-primary: #f0f0f5;
-  --text-secondary: #9898a8;
-  --text-muted: #606070;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.38);
 
   --border-subtle: rgba(255, 255, 255, 0.06);
-  --border-light: rgba(255, 255, 255, 0.1);
+  --border-light: rgba(255, 255, 255, 0.09);
   --border-medium: rgba(255, 255, 255, 0.15);
 
-  --accent-primary: #7C5CFC;
-  --accent-glow: rgba(124, 92, 252, 0.3);
+  --accent-primary: #1a4fd6;
+  --accent-secondary: #2563eb;
+  --accent-light: #5b8ef0;
+  --accent-glow: rgba(26, 79, 214, 0.35);
 
-  --gradient-hero: linear-gradient(135deg, #7C5CFC 0%, #FF6B9D 50%, #4ECDC4 100%);
-  --gradient-text: linear-gradient(135deg, #7C5CFC, #FF6B9D, #4ECDC4);
+  --gradient-hero: linear-gradient(135deg, #1a4fd6 0%, #2563eb 50%, #5b8ef0 100%);
+  --gradient-text: linear-gradient(135deg, #5b8ef0, #2563eb, #1a4fd6);
 
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -31,13 +33,13 @@
   --radius-xl: 24px;
   --radius-full: 9999px;
 
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.6);
   --shadow-glow: 0 0 40px var(--accent-glow);
 
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-display: 'Outfit', 'Inter', sans-serif;
+  --font-primary: 'DM Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Bebas Neue', 'Outfit', 'Inter', sans-serif;
 
   --transition-fast: 0.15s ease;
   --transition-normal: 0.3s ease;
@@ -548,7 +550,7 @@ body {
 
 .video-placeholder {
   aspect-ratio: 16 / 10;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  background: linear-gradient(135deg, #080c18 0%, #0c1529 50%, #0a1a3a 100%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -565,17 +567,17 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(124, 92, 252, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(26, 79, 214, 0.15) 0%, transparent 70%);
   transition: var(--transition-smooth);
 }
 
 .video-placeholder:hover {
   border-color: var(--accent-primary);
-  box-shadow: 0 0 30px rgba(124, 92, 252, 0.15);
+  box-shadow: 0 0 30px rgba(26, 79, 214, 0.2);
 }
 
 .video-placeholder:hover::before {
-  background: radial-gradient(circle at center, rgba(124, 92, 252, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle at center, rgba(26, 79, 214, 0.25) 0%, transparent 70%);
 }
 
 .play-button-wrapper {
@@ -589,7 +591,7 @@ body {
   position: absolute;
   width: 64px;
   height: 64px;
-  border: 2px solid rgba(124, 92, 252, 0.3);
+  border: 2px solid rgba(26, 79, 214, 0.4);
   border-radius: 50%;
   animation: pulseRing 2s ease-in-out infinite;
 }
