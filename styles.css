@@ -1241,3 +1241,194 @@ body {
   background: var(--accent);
   color: white;
 }
+
+/* ─── Header Right & Print button ───────────────────────────── */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.print-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-primary);
+  font-family: var(--font-primary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  min-height: 38px;
+}
+
+.print-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-primary);
+}
+
+.print-btn:active {
+  transform: scale(0.97);
+}
+
+.print-btn svg {
+  stroke: var(--text-secondary);
+  transition: var(--transition-normal);
+}
+
+.print-btn:hover svg {
+  stroke: var(--text-primary);
+}
+
+/* ─── Day Footer Actions & WA Complete Button ──────────────── */
+.day-footer-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+  animation: fadeInUp 0.6s ease 0.4s both;
+}
+
+.wa-complete-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  color: white !important;
+  text-decoration: none;
+  font-family: var(--font-primary);
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: var(--transition-smooth);
+  cursor: pointer;
+  border: none;
+}
+
+.wa-complete-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 8px 24px var(--accent-muted);
+}
+
+.wa-complete-btn:active {
+  transform: translateY(0);
+}
+
+/* ─── Print Styles ─────────────────────────────────────────── */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .header,
+  .hero,
+  .day-nav-section,
+  .footer,
+  .exercise-video-area,
+  .exercise-timer-card,
+  .exercise-check-btn,
+  .video-modal,
+  .day-footer-actions {
+    display: none !important;
+  }
+  
+  .main-content {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+  }
+  
+  .day-content {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .day-title {
+    color: black !important;
+    font-size: 2rem !important;
+  }
+  
+  .day-label {
+    color: #666 !important;
+  }
+  
+  .day-muscle-group {
+    color: black !important;
+    font-weight: bold !important;
+  }
+  
+  .exercise-card {
+    background: white !important;
+    border: 1px solid #ddd !important;
+    color: black !important;
+    opacity: 1 !important;
+    page-break-inside: avoid;
+    margin-bottom: 16px !important;
+    padding: 20px !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .exercise-name {
+    color: black !important;
+    text-decoration: none !important;
+    font-size: 1.3rem !important;
+  }
+  
+  .exercise-description {
+    color: #333 !important;
+    font-size: 0.9rem !important;
+  }
+  
+  .exercise-metrics {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    margin-top: 8px !important;
+  }
+  
+  .metric {
+    background: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    color: black !important;
+    padding: 8px 12px !important;
+    border-radius: var(--radius-md) !important;
+  }
+  
+  .metric-icon {
+    display: none !important;
+  }
+  
+  .metric-value {
+    color: black !important;
+    font-size: 1rem !important;
+  }
+  
+  .metric-label {
+    color: #6c757d !important;
+    font-size: 0.7rem !important;
+  }
+  
+  .exercise-body {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+  
+  .exercise-number {
+    border: 1px solid #ccc !important;
+    background: #f0f2f5 !important;
+    color: black !important;
+  }
+  
+  .exercise-material-badge {
+    border: 1px solid #ddd !important;
+    background: #f0f2f5 !important;
+    color: #444 !important;
+  }
+}
