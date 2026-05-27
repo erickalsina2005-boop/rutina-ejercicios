@@ -9,7 +9,6 @@ let currentDay = 1;
 document.addEventListener('DOMContentLoaded', () => {
   renderDay(currentDay);
   initScrollEffects();
-  createParticles();
   initIntersectionObserver();
 });
 
@@ -23,7 +22,6 @@ function setGender(gender) {
   if (!data || data.days.length === 0) {
     document.getElementById('mainContent').innerHTML = `
       <div class="empty-state">
-        <div class="empty-state-icon">🚧</div>
         <h2>Próximamente</h2>
         <p>La rutina femenina estará disponible muy pronto.</p>
       </div>
@@ -146,7 +144,6 @@ function renderDay(dayNumber) {
     <div class="day-content" id="dayContent">
       <div class="day-header">
         <div class="day-header-left">
-          <span class="day-icon" style="background: ${dayData.color}20; border: 1px solid ${dayData.color}40">${dayData.icon}</span>
           <div>
             <div class="day-label">Día ${dayData.day}</div>
             <h2 class="day-title">${dayData.title}</h2>
@@ -246,26 +243,6 @@ function initIntersectionObserver() {
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
   cards.forEach(card => observer.observe(card));
-}
-
-// ─── Background Particles ───────────────────────────────────
-function createParticles() {
-  const container = document.getElementById('bgParticles');
-  const particleCount = 30;
-
-  for (let i = 0; i < particleCount; i++) {
-    const particle = document.createElement('div');
-    particle.className = 'particle';
-    particle.style.cssText = `
-      left: ${Math.random() * 100}%;
-      top: ${Math.random() * 100}%;
-      width: ${Math.random() * 4 + 1}px;
-      height: ${Math.random() * 4 + 1}px;
-      animation-delay: ${Math.random() * 8}s;
-      animation-duration: ${Math.random() * 10 + 10}s;
-    `;
-    container.appendChild(particle);
-  }
 }
 
 // ─── Keyboard navigation ───────────────────────────────────

@@ -11,7 +11,7 @@ const routineData = {
         day: 1,
         title: "Tren Frontal Superior",
         muscleGroup: "Pecho y Bíceps",
-        icon: "💪",
+        icon: "",
         color: "#2563eb",
         exercises: [
           {
@@ -72,7 +72,7 @@ const routineData = {
         day: 2,
         title: "Tren Frontal Inferior",
         muscleGroup: "Piernas Frontal",
-        icon: "🦵",
+        icon: "",
         color: "#3b82f6",
         exercises: [
           {
@@ -143,7 +143,7 @@ const routineData = {
         day: 3,
         title: "Tren Trasero Superior",
         muscleGroup: "Espalda y Tríceps",
-        icon: "🏋️",
+        icon: "",
         color: "#1a4fd6",
         exercises: [
           {
@@ -204,7 +204,7 @@ const routineData = {
         day: 4,
         title: "Tren Posterior Inferior",
         muscleGroup: "Piernas Posterior",
-        icon: "🦿",
+        icon: "",
         color: "#5b8ef0",
         exercises: [
           {
@@ -275,7 +275,7 @@ const routineData = {
         day: 5,
         title: "Tren Superior",
         muscleGroup: "Hombros y Tren Superior",
-        icon: "🎯",
+        icon: "",
         color: "#60a5fa",
         exercises: [
           {
@@ -341,7 +341,7 @@ const routineData = {
         day: 1,
         title: "Tren posterior Inferior",
         muscleGroup: "Piernas Posterior",
-        icon: "🍑",
+        icon: "",
         color: "#2563eb",
         exercises: [
           {
@@ -402,7 +402,7 @@ const routineData = {
         day: 2,
         title: "Tren frontal superior",
         muscleGroup: "Pecho, hombro y bíceps",
-        icon: "💪",
+        icon: "",
         color: "#3b82f6",
         exercises: [
           {
@@ -463,7 +463,7 @@ const routineData = {
         day: 3,
         title: "Tren Frontal Inferior",
         muscleGroup: "Piernas Frontal",
-        icon: "🦵",
+        icon: "",
         color: "#1a4fd6",
         exercises: [
           {
@@ -524,7 +524,7 @@ const routineData = {
         day: 4,
         title: "Tren trasero superior",
         muscleGroup: "Espalda y Tríceps",
-        icon: "🏋️",
+        icon: "",
         color: "#5b8ef0",
         exercises: [
           {
@@ -585,7 +585,7 @@ const routineData = {
         day: 5,
         title: "Tren inferior y Abs",
         muscleGroup: "Piernas y abs",
-        icon: "🎯",
+        icon: "",
         color: "#60a5fa",
         exercises: [
           {
