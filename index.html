@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan de Entrenamiento Gratuito — Rutina Masculina</title>
+    <meta name="description" content="Plan de entrenamiento gratuito masculino de 5 días. Rutina completa con videos demostrativos de cada ejercicio.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background animated particles -->
+    <div class="bg-particles" id="bgParticles"></div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6.5 6.5L17.5 17.5M6.5 17.5L17.5 6.5" stroke-linecap="round"/>
+                        <circle cx="12" cy="12" r="10"/>
+                    </svg>
+                </div>
+                <span class="logo-text">PLAN GRATUITO</span>
+            </div>
+            <nav class="nav-gender">
+                <button class="gender-btn active" id="btnMasculino" onclick="setGender('masculino')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <circle cx="10" cy="14" r="5"/>
+                        <path d="M21 3l-6.5 6.5M21 3h-5M21 3v5"/>
+                    </svg>
+                    Masculino
+                </button>
+                <button class="gender-btn" id="btnFemenino" onclick="setGender('femenino')">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18">
+                        <circle cx="12" cy="9" r="5"/>
+                        <path d="M12 14v7M9 18h6"/>
+                    </svg>
+                    Femenino
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">RUTINA MASCULINA • 5 DÍAS</div>
+            <h1 class="hero-title">Tu Plan de <span class="gradient-text">Entrenamiento</span></h1>
+            <p class="hero-subtitle">Rutina completa diseñada para maximizar tu progreso. Cada ejercicio incluye video demostrativo, descripción detallada y material necesario.</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Días</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">27</span>
+                    <span class="stat-label">Ejercicios</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">4</span>
+                    <span class="stat-label">Series/Ej.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Day Navigation Tabs -->
+    <section class="day-nav-section" id="dayNavSection">
+        <div class="day-nav-container">
+            <div class="day-tabs" id="dayTabs">
+                <button class="day-tab active" data-day="1" onclick="switchDay(1)">
+                    <span class="day-tab-number">01</span>
+                    <span class="day-tab-label">Pecho y Bíceps</span>
+                </button>
+                <button class="day-tab" data-day="2" onclick="switchDay(2)">
+                    <span class="day-tab-number">02</span>
+                    <span class="day-tab-label">Piernas Frontal</span>
+                </button>
+                <button class="day-tab" data-day="3" onclick="switchDay(3)">
+                    <span class="day-tab-number">03</span>
+                    <span class="day-tab-label">Espalda y Tríceps</span>
+                </button>
+                <button class="day-tab" data-day="4" onclick="switchDay(4)">
+                    <span class="day-tab-number">04</span>
+                    <span class="day-tab-label">Piernas Posterior</span>
+                </button>
+                <button class="day-tab" data-day="5" onclick="switchDay(5)">
+                    <span class="day-tab-number">05</span>
+                    <span class="day-tab-label">Hombros y Tren Superior</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Day content will be rendered here by JS -->
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>Plan de Entrenamiento Gratuito &copy; 2026</p>
+            <p class="footer-note">Consulta a un profesional antes de iniciar cualquier programa de ejercicios.</p>
+        </div>
+    </footer>
+
+    <!-- Video Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-overlay" onclick="closeVideoModal()"></div>
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                    <path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="video-modal-player" id="videoModalPlayer">
+                <!-- Video embed will go here -->
+            </div>
+            <div class="video-modal-info" id="videoModalInfo">
+                <!-- Exercise info will go here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
