@@ -964,6 +964,260 @@ body {
   }
 }
 
+/* ─── Global Progress Bar ───────────────────────────────────── */
+.global-progress-wrapper {
+  max-width: 480px;
+  margin: 24px auto 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-subtle);
+  padding: 14px 18px;
+  border-radius: var(--radius-lg);
+  text-align: left;
+}
+
+.global-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.global-progress-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.global-progress-percent {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--accent-light);
+}
+
+.global-progress-bar {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.global-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width var(--transition-smooth);
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-soft) 100%);
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.3);
+}
+
+/* ─── Exercise Check Button & Completed Card ─────────────── */
+.exercise-check-btn {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  padding: 0;
+  margin-left: auto;
+}
+
+.exercise-check-btn svg {
+  transform: scale(0.8);
+  transition: transform var(--transition-normal);
+}
+
+.exercise-check-btn.checked svg {
+  transform: scale(1);
+}
+
+.exercise-check-btn:hover {
+  transform: scale(1.08);
+}
+
+.exercise-check-btn:active {
+  transform: scale(0.95);
+}
+
+.exercise-card.completed {
+  opacity: 0.5;
+  border-color: rgba(255, 255, 255, 0.03);
+}
+
+.exercise-card.completed:hover {
+  opacity: 0.85;
+}
+
+.exercise-card.completed .exercise-name {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+/* ─── Day Progress Badge ───────────────────────────────────── */
+.day-progress-badge {
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.78rem;
+  transition: all var(--transition-normal);
+}
+
+/* ─── Day Tabs Checklist Badges ────────────────────────────── */
+.day-tab-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.day-tab-check {
+  font-size: 0.75rem;
+  font-weight: 900;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.day-tab.completed {
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+/* ─── Dynamic Rest Timer Card ──────────────────────────────── */
+.exercise-timer-card {
+  margin-top: 18px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: all var(--transition-normal);
+}
+
+.exercise-timer-card.running {
+  border-color: rgba(37, 99, 235, 0.3);
+  background: rgba(37, 99, 235, 0.02);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.03);
+}
+
+.exercise-timer-card.finished {
+  border-color: rgba(16, 185, 129, 0.4);
+  background: rgba(16, 185, 129, 0.04);
+  animation: timerPulseFinished 1.5s infinite ease-in-out;
+}
+
+.timer-display-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.timer-status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exercise-timer-card.running .timer-status-icon {
+  animation: timerRotate 8s linear infinite;
+}
+
+.timer-title-text {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.timer-time {
+  margin-left: auto;
+  font-family: monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-primary);
+}
+
+.exercise-timer-card.finished .timer-time {
+  color: #10b981;
+  animation: textFlash 1s infinite alternate;
+}
+
+.timer-controls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.timer-control-btn {
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  transition: all var(--transition-normal);
+}
+
+.timer-control-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.15);
+}
+
+.timer-control-btn:active {
+  transform: translateY(0);
+}
+
+.timer-start-pause {
+  min-width: 38px;
+}
+
+.timer-progress-container {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  position: relative;
+}
+
+.timer-progress-fill {
+  height: 100%;
+  border-radius: var(--radius-full);
+  transition: width 0.3s ease;
+  width: 0;
+}
+
+@keyframes timerRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes timerPulseFinished {
+  0%, 100% { border-color: rgba(16, 185, 129, 0.3); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.1); }
+  50% { border-color: rgba(16, 185, 129, 0.6); box-shadow: 0 0 10px 2px rgba(16, 185, 129, 0.15); }
+}
+
+@keyframes textFlash {
+  0% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
 /* ─── Scrollbar ─────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 5px;
