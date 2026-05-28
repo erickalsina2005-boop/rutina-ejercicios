@@ -226,6 +226,18 @@ function updateDayProgressUI() {
     }
   });
 }
+
+function renderDayProgressBadge(color, completed, total) {
+  const allDone = completed === total && total > 0;
+  return `
+    <div class="day-progress-badge" style="border: 1px solid ${allDone ? '#10b981' : color}40; background: ${allDone ? '#10b981' : color}10">
+      <span class="day-progress-text" style="color: ${allDone ? '#10b981' : color}; font-weight: 600;">
+        ${allDone ? '¡Día Completado! ✓' : `Progreso: ${completed}/${total}`}
+      </span>
+    </div>
+  `;
+}
+
 function toggleExerciseState(exerciseId, event) {
   if (event) event.stopPropagation();
   
