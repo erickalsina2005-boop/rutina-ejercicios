@@ -313,6 +313,18 @@ body {
   padding: 32px 20px 60px;
 }
 
+.print-header {
+  display: none;
+}
+
+/* Screen mode: show only active day */
+.day-content {
+  display: none;
+}
+.day-content.active {
+  display: block;
+}
+
 /* ─── Day Header ────────────────────────────────────────────── */
 .day-header {
   display: flex;
@@ -867,6 +879,9 @@ body {
   .exercise-card {
     padding: 18px;
     border-radius: var(--radius-lg);
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 
   .exercise-card-header {
@@ -1344,10 +1359,48 @@ body {
     margin: 0 !important;
     max-width: 100% !important;
   }
+
+  .print-header {
+    display: block !important;
+    text-align: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 15px;
+  }
+  
+  .print-header h1 {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    margin: 0;
+    color: #000 !important;
+  }
+  
+  .print-header h2 {
+    font-family: var(--font-primary);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333 !important;
+    margin: 8px 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  #daysContainer {
+    display: block !important;
+  }
   
   .day-content {
+    display: block !important;
     background: white !important;
     color: black !important;
+    page-break-after: always;
+    margin-bottom: 0 !important;
+    padding-top: 20px !important;
+  }
+  
+  .day-content:last-child {
+    page-break-after: avoid;
   }
   
   .day-title {
