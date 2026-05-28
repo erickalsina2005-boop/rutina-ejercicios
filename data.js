@@ -22,7 +22,7 @@ const routineData = {
             sets: 4,
             rest: "2-3 min entre serie",
             material: "Mancuernas",
-            videoUrl: "" // Aquí se colocará la URL del video
+            videoUrl: "videos/v1sg pecho inclinado.mp4"
           },
           {
             id: "m1-2",
@@ -32,7 +32,7 @@ const routineData = {
             sets: 4,
             rest: "2-3 min entre serie",
             material: "Mancuernas",
-            videoUrl: ""
+            videoUrl: "videos/v2sg pecho plano.mp4"
           },
           {
             id: "m1-3",
@@ -42,7 +42,7 @@ const routineData = {
             sets: 4,
             rest: "2-3 min entre serie",
             material: "Máquina de aperturas o mancuernas",
-            videoUrl: ""
+            videoUrl: "videos/v3sg aperturas plano.mp4"
           },
           {
             id: "m1-4",
