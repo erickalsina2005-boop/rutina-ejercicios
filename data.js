@@ -17,12 +17,12 @@ const routineData = {
           {
             id: "m1-1",
             name: "Press Inclinado",
-            description: "Acostado en un banco inclinado, baja el peso de forma controlada hasta el pecho y empuja hacia arriba extendiendo los brazos. Mantén los hombros estables y el core firme.",
+            description: "Acostado en un banco inclinado, baja el peso de forma controlada hasta el pecho y empuja hacia arriba extendiendo los brazos. Mantén los hombros estables and el core firme.",
             reps: "10-12",
             sets: 4,
             rest: "2-3 min entre serie",
             material: "Mancuernas",
-            videoUrl: "videos/v1sg pecho inclinado.mp4"
+            videoUrl: "videos/v1sg-pecho-inclinado.mp4"
           },
           {
             id: "m1-2",
@@ -32,7 +32,7 @@ const routineData = {
             sets: 4,
             rest: "2-3 min entre serie",
             material: "Mancuernas",
-            videoUrl: "videos/v2sg pecho plano.mp4"
+            videoUrl: "videos/v2sg-pecho-plano.mp4"
           },
           {
             id: "m1-3",
@@ -42,7 +42,7 @@ const routineData = {
             sets: 4,
             rest: "2-3 min entre serie",
             material: "Máquina de aperturas o mancuernas",
-            videoUrl: "videos/v3sg aperturas plano.mp4"
+            videoUrl: "videos/v3sg-aperturas-plano.mp4"
           },
           {
             id: "m1-4",
