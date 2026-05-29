@@ -375,7 +375,10 @@ function renderAllDays() {
                        onclick="openVideoModal('${ex.id}', '${escapeHTML(ex.name)}', '${escapeHTML(resolvedUrl)}')"
                        onmouseenter="const v = this.querySelector('video'); if (v) v.play().catch(e=>{})"
                        onmouseleave="const v = this.querySelector('video'); if (v) { v.pause(); try { v.currentTime = ${resetTime}; } catch(e){} }">
-                    <video class="video-card-preview" src="${videoSrc}" preload="metadata" muted playsinline></video>
+                    <video class="video-card-preview" src="${videoSrc}" preload="auto" muted playsinline
+                           onloadeddata="try { this.currentTime = 0.1; } catch(e) {}"
+                           onerror="this.style.display='none'; this.parentElement.querySelector('.play-button-wrapper-overlay').style.background='rgba(0,0,0,0.7)';">
+                    </video>
                     <div class="play-button-wrapper-overlay">
                       <div class="play-button-ring"></div>
                       <div class="play-button">
