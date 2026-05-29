@@ -1284,22 +1284,23 @@ body {
 
 .timer-controls {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   align-items: center;
+  margin-top: 4px;
 }
 
 .timer-control-btn {
   border: none;
   font-family: var(--font-primary);
-  font-size: 0.72rem;
-  font-weight: 600;
-  padding: 6px 12px;
-  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 28px;
+  min-height: 40px;
   transition: all var(--transition-normal);
 }
 
@@ -1313,7 +1314,7 @@ body {
 }
 
 .timer-start-pause {
-  min-width: 38px;
+  min-width: 52px;
 }
 
 .timer-progress-container {
