@@ -8,10 +8,10 @@ let currentDay = 1;
 // Supabase Connection Configuration
 const supabaseUrl = 'https://piiufjncnllhhenetvjt.supabase.co';
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpaXVmam5jbmxsaGhlbmV0dmp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODA4MDUsImV4cCI6MjA5NDc1NjgwNX0.9VCyQg_Z4j-7jkv8B5B7P9qFjvYfgKTZ3gdB1ocApXY';
-let supabase = null;
+let supabaseClient = null;
 try {
   if (window.supabase && typeof window.supabase.createClient === 'function') {
-    supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+    supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
   }
 } catch (e) {
   console.error('Error al inicializar Supabase:', e);
@@ -814,14 +814,14 @@ function handlePdfClick() {
 
 function trackPdfClick() {
   // 1. Registrar en Supabase si está disponible
-  if (supabase) {
+  if (supabaseClient) {
     const insertData = {
       gender: currentGender,
       current_day: currentDay,
       user_agent: navigator.userAgent
     };
     
-    supabase.from('pdf_clicks').insert([insertData])
+    supabaseClient.from('pdf_clicks').insert([insertData])
       .then(({ error }) => {
         if (error) {
           console.error('Error al registrar tracking en Supabase:', error);
