@@ -244,7 +244,7 @@ function updateGlobalProgressUI() {
   const fillBar = document.getElementById('globalProgressFill');
   
   if (percentText) {
-    percentText.textContent = `${progress.percentage}% completado`;
+    percentText.textContent = `${progress.completed}/${progress.total} Ejercicios`;
   }
   if (fillBar) {
     fillBar.style.width = `${progress.percentage}%`;

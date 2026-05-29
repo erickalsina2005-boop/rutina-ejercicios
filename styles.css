@@ -927,7 +927,19 @@ body {
   }
 
   .hero-stats {
-    gap: 28px;
+    display: none;
+  }
+
+  .hero-dashboard-card {
+    padding: 14px 16px;
+  }
+
+  .global-progress-wrapper {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 100%;
   }
 
   .stat-number {
