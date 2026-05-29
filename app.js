@@ -367,12 +367,15 @@ function renderAllDays() {
             ${(() => {
               const resolvedUrl = resolveVideoUrl(ex.videoUrl);
               if (resolvedUrl && resolvedUrl.trim() !== '') {
+                const isLocal = window.location.protocol === 'file:';
+                const videoSrc = isLocal ? resolvedUrl : `${resolvedUrl}#t=0.5`;
+                const resetTime = isLocal ? 0.1 : 0.5;
                 return `
                   <div class="exercise-video-area" 
                        onclick="openVideoModal('${ex.id}', '${escapeHTML(ex.name)}', '${escapeHTML(resolvedUrl)}')"
                        onmouseenter="const v = this.querySelector('video'); if (v) v.play().catch(e=>{})"
-                       onmouseleave="const v = this.querySelector('video'); if (v) { v.pause(); v.currentTime = 0.5; }">
-                    <video class="video-card-preview" src="${resolvedUrl}#t=0.5" preload="metadata" muted playsinline></video>
+                       onmouseleave="const v = this.querySelector('video'); if (v) { v.pause(); try { v.currentTime = ${resetTime}; } catch(e){} }">
+                    <video class="video-card-preview" src="${videoSrc}" preload="metadata" muted playsinline></video>
                     <div class="play-button-wrapper-overlay">
                       <div class="play-button-ring"></div>
                       <div class="play-button">
