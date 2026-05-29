@@ -544,13 +544,6 @@ function renderAllDays() {
 
   // Re-init intersection observer for all cards
   initIntersectionObserver();
-  
-  // Force load video previews (critical for file:// protocol)
-  setTimeout(() => {
-    document.querySelectorAll('.video-card-preview').forEach(v => {
-      v.load();
-    });
-  }, 100);
 }
 
 // ─── Stopwatch Timer States & Logic ──────────────────────────
