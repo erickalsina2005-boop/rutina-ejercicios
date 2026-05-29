@@ -35,7 +35,7 @@
                         Femenino
                     </button>
                 </nav>
-                <button class="print-btn" onclick="window.print()" title="Guardar PDF / Imprimir">
+                <button class="print-btn" onclick="handlePdfClick()" title="Guardar PDF / Imprimir">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16">
                         <path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
                         <path d="M6 14h12v8H6z"/>
@@ -47,34 +47,39 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero hero-compact">
         <div class="hero-content">
-            <p class="hero-badge">SEMANA GRATUITA</p>
-            <h1 class="hero-title">Tu plan de entrenamiento personalizado</h1>
-            <p class="hero-subtitle">Rutina completa de 5 días con descripción detallada de cada ejercicio y el material que necesitas. Solo tienes que seguirla.</p>
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <span class="stat-number">5</span>
-                    <span class="stat-label">Días</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">25</span>
-                    <span class="stat-label">Ejercicios</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">4</span>
-                    <span class="stat-label">Series/Ej.</span>
-                </div>
+            <div class="hero-header-text">
+                <p class="hero-badge">SEMANA GRATUITA</p>
+                <h1 class="hero-title">Tu Plan de Entrenamiento</h1>
+                <p class="hero-subtitle">Sigue tu rutina de 5 días con demostraciones en video y cronómetro integrado.</p>
             </div>
-
-            <!-- Global Progress Bar -->
-            <div class="global-progress-wrapper">
-                <div class="global-progress-header">
-                    <span class="global-progress-label">Tu progreso esta semana</span>
-                    <span class="global-progress-percent" id="globalProgressPercent">0% completado</span>
+            
+            <div class="hero-dashboard-card">
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Días</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">25</span>
+                        <span class="stat-label">Ejercicios</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Series/Ej.</span>
+                    </div>
                 </div>
-                <div class="global-progress-bar">
-                    <div class="global-progress-fill" id="globalProgressFill" style="width: 0%"></div>
+
+                <!-- Global Progress Bar -->
+                <div class="global-progress-wrapper">
+                    <div class="global-progress-header">
+                        <span class="global-progress-label">Tu progreso esta semana</span>
+                        <span class="global-progress-percent" id="globalProgressPercent">0% completado</span>
+                    </div>
+                    <div class="global-progress-bar">
+                        <div class="global-progress-fill" id="globalProgressFill" style="width: 0%"></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -142,6 +147,7 @@
         </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="data.js"></script>
     <script src="app.js"></script>
 </body>

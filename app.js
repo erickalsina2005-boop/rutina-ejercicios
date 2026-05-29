@@ -5,6 +5,11 @@
 let currentGender = 'masculino';
 let currentDay = 1;
 
+// Supabase Connection Configuration
+const supabaseUrl = 'https://piiufjncnllhhenetvjt.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBpaXVmam5jbmxsaGhlbmV0dmp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzkxODA4MDUsImV4cCI6MjA5NDc1NjgwNX0.9VCyQg_Z4j-7jkv8B5B7P9qFjvYfgKTZ3gdB1ocApXY';
+const supabase = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
+
 // ─── Progress Management (Database ready) ───────────────────
 const ProgressManager = {
   data: {
@@ -117,6 +122,14 @@ ProgressManager.init();
 
 // ─── Initialize ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Cargar el día seleccionado previamente si existe
+  const storedDay = localStorage.getItem('chris_training_current_day');
+  if (storedDay) {
+    const dayNum = parseInt(storedDay);
+    if (dayNum >= 1 && dayNum <= 5) {
+      currentDay = dayNum;
+    }
+  }
   renderDayTabs();
   updateGlobalProgressUI();
   renderAllDays();
@@ -155,6 +168,7 @@ function setGender(gender) {
 // ─── Day Switcher ───────────────────────────────────────────
 function switchDay(day) {
   currentDay = day;
+  localStorage.setItem('chris_training_current_day', day);
   renderDayTabs();
   
   // Toggle visibility of day contents
@@ -180,19 +194,25 @@ function renderDayTabs() {
   dayTabsContainer.innerHTML = data.days.map(d => {
     const isCompleted = ProgressManager.isDayCompleted(currentGender, d.day);
     const isActive = d.day === currentDay;
+    const progress = ProgressManager.getCompletedCountForDay(currentGender, d.day);
     
-    // Check indicator inside tab
-    const checkBadge = isCompleted 
-      ? `<span class="day-tab-check">✓</span>` 
-      : ``;
+    // Badge de progreso del día
+    let progressBadge = '';
+    if (progress.total > 0) {
+      if (progress.completed === progress.total) {
+        progressBadge = `<span class="day-tab-progress-badge">✓ Listo</span>`;
+      } else {
+        progressBadge = `<span class="day-tab-progress-badge">${progress.completed}/${progress.total} Ej.</span>`;
+      }
+    }
       
     return `
       <button class="day-tab ${isActive ? 'active' : ''} ${isCompleted ? 'completed' : ''}" data-day="${d.day}" onclick="switchDay(${d.day})">
-        <div class="day-tab-header-row">
-          <span class="day-tab-number">0${d.day}</span>
-          ${checkBadge}
-        </div>
+        <span class="day-tab-number">0${d.day}</span>
         <span class="day-tab-label">${d.muscleGroup}</span>
+        <div class="day-tab-footer-row">
+          ${progressBadge}
+        </div>
       </button>
     `;
   }).join('');
@@ -326,19 +346,40 @@ function renderAllDays() {
           </div>
 
           <div class="exercise-body">
-            <div class="exercise-video-area" onclick="openVideoModal('${ex.id}', '${escapeHTML(ex.name)}', '${escapeHTML(ex.videoUrl)}')">
-              <div class="video-placeholder">
-                <div class="play-button-wrapper">
-                  <div class="play-button-ring"></div>
-                  <div class="play-button">
-                    <svg viewBox="0 0 24 24" fill="currentColor" width="28" height="28">
-                      <polygon points="5,3 19,12 5,21"/>
-                    </svg>
+            ${(() => {
+              const resolvedUrl = resolveVideoUrl(ex.videoUrl);
+              if (resolvedUrl && resolvedUrl.trim() !== '') {
+                return `
+                  <div class="exercise-video-area" 
+                       onclick="openVideoModal('${ex.id}', '${escapeHTML(ex.name)}', '${escapeHTML(resolvedUrl)}')"
+                       onmouseenter="const v = this.querySelector('video'); if (v) v.play().catch(e=>{})"
+                       onmouseleave="const v = this.querySelector('video'); if (v) { v.pause(); v.currentTime = 0.5; }">
+                    <video class="video-card-preview" src="${resolvedUrl}#t=0.5" preload="metadata" muted playsinline></video>
+                    <div class="play-button-wrapper-overlay">
+                      <div class="play-button-ring"></div>
+                      <div class="play-button">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                          <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                      </div>
+                      <span class="video-label">Ver demostración</span>
+                    </div>
                   </div>
-                </div>
-                <span class="video-label">Ver demostración</span>
-              </div>
-            </div>
+                `;
+              } else {
+                return `
+                  <div class="exercise-video-area no-video-url">
+                    <div class="video-placeholder">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="24" height="24" style="opacity: 0.5; margin-bottom: 4px;">
+                        <path d="M23 7l-7 5 7 5V7z" />
+                        <rect x="1" y="5" width="15" height="14" rx="2" ry="2" />
+                      </svg>
+                      <span class="video-label">Próximamente</span>
+                    </div>
+                  </div>
+                `;
+              }
+            })()}
 
             <div class="exercise-details">
               <p class="exercise-description">${ex.description}</p>
@@ -735,6 +776,63 @@ function extractYoutubeId(url) {
 // ─── Utility ────────────────────────────────────────────────
 function escapeHTML(str) {
   return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
+}
+
+function resolveVideoUrl(videoUrl) {
+  if (!videoUrl || videoUrl.trim() === '') return '';
+  // Si estamos en la subcarpeta ChrisTraining/rutina-ejercicios, debemos retroceder un nivel
+  if (window.location.pathname.includes('/ChrisTraining/')) {
+    if (videoUrl.startsWith('../')) return videoUrl;
+    return '../' + videoUrl;
+  }
+  return videoUrl;
+}
+
+function handlePdfClick() {
+  trackPdfClick();
+  window.print();
+}
+
+function trackPdfClick() {
+  // 1. Registrar en Supabase si está disponible
+  if (supabase) {
+    const insertData = {
+      gender: currentGender,
+      current_day: currentDay,
+      user_agent: navigator.userAgent
+    };
+    
+    supabase.from('pdf_clicks').insert([insertData])
+      .then(({ error }) => {
+        if (error) {
+          console.error('Error al registrar tracking en Supabase:', error);
+        } else {
+          console.log('Tracking de PDF registrado en Supabase con éxito');
+        }
+      });
+  }
+
+  // 2. Registrar en base de datos SQLite local si es un entorno servido
+  if (window.location.protocol !== 'http:' && window.location.protocol !== 'https:') {
+    console.log('Ejecución local mediante file://, omitiendo registro en SQLite local.');
+    return;
+  }
+  
+  const payload = {
+    gender: currentGender,
+    day: currentDay
+  };
+  
+  fetch('/api/track-pdf', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+  .then(data => console.log('Tracking de PDF registrado en SQLite:', data))
+  .catch(err => console.error('Error al registrar en SQLite:', err));
 }
 
 // ─── Scroll Effects ─────────────────────────────────────────
