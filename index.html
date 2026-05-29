@@ -11,6 +11,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <script>
+        window.addEventListener('error', function(e) {
+            var div = document.getElementById('debug-err-banner');
+            if (!div) {
+                div = document.createElement('div');
+                div.id = 'debug-err-banner';
+                div.style.position = 'fixed';
+                div.style.top = '0';
+                div.style.left = '0';
+                div.style.width = '100%';
+                div.style.background = '#ef4444';
+                div.style.color = 'white';
+                div.style.padding = '14px';
+                div.style.zIndex = '999999';
+                div.style.fontSize = '14px';
+                div.style.fontFamily = 'monospace';
+                div.style.fontWeight = 'bold';
+                div.style.boxShadow = '0 4px 12px rgba(0,0,0,0.5)';
+                document.body.appendChild(div);
+            }
+            div.textContent = 'JS ERROR: ' + e.message + ' en ' + (e.filename ? e.filename.split('/').pop() : 'desconocido') + ':' + e.lineno;
+        });
+    </script>
 
     <!-- Header -->
     <header class="header" id="header">

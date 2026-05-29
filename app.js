@@ -34,13 +34,20 @@ const ProgressManager = {
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       if (stored) {
-        this.data = JSON.parse(stored);
-        if (!this.data.completedExercises) this.data.completedExercises = {};
-        if (!this.data.completedDays) this.data.completedDays = {};
+        const parsed = JSON.parse(stored);
+        if (parsed && typeof parsed === 'object') {
+          this.data = parsed;
+        }
       }
     } catch (e) {
       console.error('Error al cargar progreso:', e);
     }
+    // Asegurar estructura de datos para evitar TypeErrors
+    if (!this.data || typeof this.data !== 'object') {
+      this.data = { completedExercises: {}, completedDays: {} };
+    }
+    if (!this.data.completedExercises) this.data.completedExercises = {};
+    if (!this.data.completedDays) this.data.completedDays = {};
   },
 
   save() {
@@ -129,19 +136,23 @@ ProgressManager.init();
 
 // ─── Initialize ─────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  // Cargar el día seleccionado previamente si existe
-  const storedDay = localStorage.getItem('chris_training_current_day');
-  if (storedDay) {
-    const dayNum = parseInt(storedDay);
-    if (dayNum >= 1 && dayNum <= 5) {
-      currentDay = dayNum;
+  try {
+    // Cargar el día seleccionado previamente si existe
+    const storedDay = localStorage.getItem('chris_training_current_day');
+    if (storedDay) {
+      const dayNum = parseInt(storedDay);
+      if (dayNum >= 1 && dayNum <= 5) {
+        currentDay = dayNum;
+      }
     }
+    renderDayTabs();
+    updateGlobalProgressUI();
+    renderAllDays();
+    initScrollEffects();
+    initIntersectionObserver();
+  } catch (e) {
+    console.error('Error crítico durante el inicio:', e);
   }
-  renderDayTabs();
-  updateGlobalProgressUI();
-  renderAllDays();
-  initScrollEffects();
-  initIntersectionObserver();
 });
 
 // ─── Gender Switcher ────────────────────────────────────────
@@ -782,11 +793,12 @@ function extractYoutubeId(url) {
 
 // ─── Utility ────────────────────────────────────────────────
 function escapeHTML(str) {
+  if (!str || typeof str !== 'string') return '';
   return str.replace(/'/g, "\\'").replace(/"/g, '\\"');
 }
 
 function resolveVideoUrl(videoUrl) {
-  if (!videoUrl || videoUrl.trim() === '') return '';
+  if (!videoUrl || typeof videoUrl !== 'string' || videoUrl.trim() === '') return '';
   // Si estamos en la subcarpeta ChrisTraining/rutina-ejercicios, debemos retroceder un nivel
   if (window.location.pathname.includes('/ChrisTraining/')) {
     if (videoUrl.startsWith('../')) return videoUrl;
